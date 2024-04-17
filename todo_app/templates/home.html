@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+
+    <div class="bg-rose-100 text-center">
+      <h1>Welcome to your list</h1>
+      <h2>My Day</h2>
+      <p>{% now "jS F Y" %}</p>
+      <div>    
+        {% block body %}
+        {% endblock %}
+      </div>
+      <div class="flex gap-4 items-center justify-center">
+        <div>
+          {% block tasks %}
+          {% endblock %}
+        </div>
+        <div>
+          {% block completedTasks %} 
+          {% endblock %}
+        </div>
+      </div>
+      <div class='bg-slate-100'>
+        {% block addTask %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

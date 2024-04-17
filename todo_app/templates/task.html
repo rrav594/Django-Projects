@@ -1,0 +1,44 @@
+{% extends "home.html" %}
+
+{% block title %}
+    Todo App
+{% endblock %}
+
+{% block tasks %} 
+Tasks:
+<ul class='m-15 p-5'>
+    {% for task in tasks %}
+    <li key={{ task.pk}}>
+        {{ task.task }}
+        <span class='flex'>
+            <a href='{% url 'deleteTask' task.pk %}' class='bg-stone-500 text-slate-200 rounded-lg m-5 p-1'>Delete</a>
+            <a href='{% url 'editTask' task.pk %}' class='bg-stone-500 text-slate-200 rounded-lg m-5 p-2'>Edit</a>
+            <a href='{% url 'taskComplete' task.pk %}' class='bg-stone-500 text-slate-200 rounded-lg m-5 p-2'>Mark As Complete</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+{% block completedTasks %} 
+    Completed Tasks:
+    <ul>
+    {% for task in completedTasks %}
+        <li key={{task.pk}} class='hover:underline'>
+            {{ task.task }}
+            <span><a href='{% url 'unmarkTask' task.pk %}' class='text-red-500'>Unmark</a></span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block addTask %}
+<form method="POST" action='{% url 'add-task' %}'>      
+    {% csrf_token %}
+    <div>
+        <input type='textarea' name='task'/>
+        <button type='submit' class='bg-stone-500 text-slate-200 rounded-lg m-5 p-2'>Add Task</button>
+    </div>
+</form>
+{% endblock %}

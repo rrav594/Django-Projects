@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+
+{% block title %}
+    Edit Task
+{% endblock %}
+
+{% block body %}
+<div>
+    <h3 class='text-center'>Edit Task: </h3>
+    <form method="POST" action='{%url 'editTask' editTask.pk %}'>      
+        {% csrf_token %}
+        <div>
+            <input type='textarea' name='task' value={{editTask.task}}/>
+            <button type='submit' class='bg-stone-500 text-slate-200 rounded-lg m-5 p-2'>Confirm</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
